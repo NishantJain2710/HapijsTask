@@ -3,6 +3,9 @@ require('dotenv').config();
 
 const { validate } = require('./utils/auth.js');
 
+//Routes
+const adminAuthRoutes = require('./routes/adminAuthRoutes/adminAuthRoutes');
+
 
 //Database setup
 const db = require('./knex/knex');
@@ -30,7 +33,7 @@ const init = async() => {
         })
         server.auth.default('jwt');
 
-
+        server.route(adminAuthRoutes())
 
         await server.start();
         console.log('info', 'server running at: ' + server.info.uri);
