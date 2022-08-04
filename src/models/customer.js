@@ -1,5 +1,7 @@
 const { Model } = require('objection');
 
+const Invoice = require('./invoice');
+
 class Customer extends Model {
     static get tableName() {
         return 'customers'
@@ -56,6 +58,16 @@ class Customer extends Model {
         }
     }
 
+    static relationMappings = {
+        invoice: {
+            relation: Model.HasOneRelation,
+            modelClass: Invoice,
+            join: {
+                from: 'customers.id',
+                to: 'invoice.customerId'
+            }
+        }
+    }
 }
 
 module.exports = Customer;
