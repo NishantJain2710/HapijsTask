@@ -43,8 +43,8 @@ class Product extends Model {
                 id : { type:'integer' },
                 name : { type : 'string', minLength : 1, maxLength : 255},
                 quantity : { type : 'integer'},
-                price: { type : 'float' },
-                discount : { type : 'float' },
+                price: { type : 'number' },
+                discount : { type : 'number' },
                 createdAt: { type: 'string' },
                 updatedAt: { type: 'string' },
                 storeId: { type: 'integer' }

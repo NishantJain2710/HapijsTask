@@ -4,7 +4,7 @@
  */
 exports.up = function(knex) {
     return knex.schema.table('products', function(table){
-        table.integer('storeId');
+        table.integer('storeId').nullable();
     });
 };
 
