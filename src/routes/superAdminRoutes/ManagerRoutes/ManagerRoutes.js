@@ -2,6 +2,7 @@
 const PostCreateManager = require('../../../controllers/SuperAdminControllers/ManagerControllers/PostCreateManagers');
 const GetAllManagers = require('../../../controllers/SuperAdminControllers/ManagerControllers/GetAllManagers');
 const GetParticularManagers = require('../../../controllers/SuperAdminControllers/ManagerControllers/GetParticularManager');
+const GetStoreDetailsOfManager = require('../../../controllers/SuperAdminControllers/ManagerControllers/GetStoreDetailsController');
 
 
 //Validator
@@ -34,6 +35,14 @@ const SuperAdminManagerRoutes = () => {
             options:{
                 auth: 'jwt',
                 handler: GetParticularManagers
+            }
+        },
+        {
+            method: 'get',
+            path: '/v1/api/s_a/store/{id}/manager',
+            options:{
+                auth: 'jwt',
+                handler: GetStoreDetailsOfManager
             }
         },
     ]
