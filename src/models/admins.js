@@ -56,6 +56,21 @@ class Admin extends Model {
             }
         }
     }
+
+    static get relationMappings() {
+        const Store = require('./store');
+
+        return{
+            store: {
+                relation: Model.HasOneRelation,
+                modelClass: Store,
+                join: {
+                    from: 'admins.id',
+                    to: 'store.managerId'
+                }
+            }
+        }
+    }
 }
 
 module.exports = Admin;
