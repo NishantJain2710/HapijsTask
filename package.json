@@ -20,6 +20,6 @@
     },
     "scripts": {
         "start": "nodemon src/index.js",
-        "migrations": "npx knex migrate:latest"
+        "migrations": "npx knex migrate:latest --env development"
     }
 }

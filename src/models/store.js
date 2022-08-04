@@ -1,5 +1,7 @@
 const { Model } = require('objection');
 
+const Admin = require('./admins');
+
 class Store extends Model {
     static get tableName() {
         return 'store'
@@ -29,6 +31,10 @@ class Store extends Model {
         return 'countary';
     }
 
+    static get managerIdColumn() {
+        return 'managerId';
+    }
+
     $beforeInsert() {
         this.createdAt = new Date();
     }
@@ -55,17 +61,13 @@ class Store extends Model {
         }
     }
 
-    static get relationMappings() {
-        const Admin = require('./admins');
-
-        return{
-            manager: {
-                relation: Model.BelongsToOneRelation,
-                modelClass: Admin,
-                join: {
-                    from: 'store.managerId',
-                    to: 'admins.id'
-                }
+    static relationMappings = {
+        manager: {
+            relation: Model.BelongsToOneRelation,
+            modelClass: Admin,
+            join: {
+                from: 'store.managerId',
+                to: 'admins.id'
             }
         }
     }

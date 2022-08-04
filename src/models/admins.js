@@ -1,5 +1,7 @@
 const { Model } = require('objection');
 
+const Store = require('./store');
+
 class Admin extends Model {
     static get tableName() {
         return 'admins'
@@ -57,17 +59,13 @@ class Admin extends Model {
         }
     }
 
-    static get relationMappings() {
-        const Store = require('./store');
-
-        return{
-            store: {
-                relation: Model.HasOneRelation,
-                modelClass: Store,
-                join: {
-                    from: 'admins.id',
-                    to: 'store.managerId'
-                }
+    static relationMappings = {
+        store: {
+            relation: Model.HasOneRelation,
+            modelClass: Store,
+            join: {
+                from: 'admins.id',
+                to: 'store.managerId'
             }
         }
     }
