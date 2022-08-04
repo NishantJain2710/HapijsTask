@@ -12,6 +12,8 @@ const SuperAdminProductRoutes = require('./routes/superAdminRoutes/ProductRoutes
 
 const ManagerProductRoutes = require('./routes/ManagerRoutes/ProductsRoutes/ProductsRoutes');
 
+const customerAuthRoutes = require('./routes/customerRoutes/CustomerRoutes');
+
 //Database setup
 const db = require('./knex/knex');
 
@@ -44,7 +46,9 @@ const init = async() => {
         server.route(SuperAdminStoreRoutes())
         server.route(SuperAdminProductRoutes())
         server.route(ManagerProductRoutes())
+        server.route(customerAuthRoutes())
 
+        
         await server.start();
         console.log('info', 'server running at: ' + server.info.uri);
 
