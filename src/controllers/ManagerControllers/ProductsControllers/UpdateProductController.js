@@ -60,7 +60,7 @@ const UpdateProductsController = async (request, h) => {
 
         //Update Product
 
-        const updatedProduct =  await Products.query()
+        await Products.query()
             .findById(isProductExist.id)
             .patch({
                 name: name ? name : isProductExist.name,

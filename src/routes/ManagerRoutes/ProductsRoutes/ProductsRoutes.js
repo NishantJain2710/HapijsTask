@@ -16,7 +16,7 @@ const ManagerProductRoutes = () => {
             }
         },
         {
-            method: 'post',
+            method: 'put',
             path: '/v1/api/s_a/update/{id}/product/manager',
             options:{
                 auth: 'jwt',
