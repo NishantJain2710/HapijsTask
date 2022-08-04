@@ -1,5 +1,5 @@
 //controller 
-const PostCreateManager = require('../../../controllers/SuperAdminControllers/PostCreateManagers');
+const PostCreateManager = require('../../../controllers/SuperAdminControllers/ManagerControllers/PostCreateManagers');
 
 //Validator
 const ManagerValidations = require('../../../validators/ManagerValidations/ManagerValidations');

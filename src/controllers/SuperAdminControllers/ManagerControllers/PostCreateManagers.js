@@ -1,4 +1,4 @@
-const Admin = require('../../models/admins');
+const Admin = require('../../../models/admins');
 
 const argon2 = require('argon2');
 
@@ -47,7 +47,7 @@ const PostCreateManager = async (request, h) => {
         });
 
 
-        //sending success response with the encoded token
+        //sending success response
         const responsData = {
             data:{
                 email: admin.email,

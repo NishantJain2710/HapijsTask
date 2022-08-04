@@ -7,6 +7,7 @@ const { validate } = require('./utils/auth.js');
 const adminAuthRoutes = require('./routes/adminAuthRoutes/adminAuthRoutes');
 const SuperAdminManagerRoutes = require('./routes/superAdminRoutes/ManagerRoutes/CreateManagerRoutes');
 const ManagerAuthRoutes = require('./routes/ManagerRoutes/AuthorizationRoutes');
+const SuperAdminStoreRoutes = require('./routes/superAdminRoutes/StoreRoutes/StoreRoutes');
 
 //Database setup
 const db = require('./knex/knex');
@@ -37,6 +38,7 @@ const init = async() => {
         server.route(adminAuthRoutes())
         server.route(SuperAdminManagerRoutes())
         server.route(ManagerAuthRoutes())
+        server.route(SuperAdminStoreRoutes())
 
         await server.start();
         console.log('info', 'server running at: ' + server.info.uri);
