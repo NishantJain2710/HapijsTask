@@ -60,7 +60,7 @@ class Customer extends Model {
 
     static relationMappings = {
         invoice: {
-            relation: Model.HasOneRelation,
+            relation: Model.HasManyRelation,
             modelClass: Invoice,
             join: {
                 from: 'customers.id',

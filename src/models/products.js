@@ -1,6 +1,7 @@
 const { Model } = require('objection');
 
 const Store = require('./store');
+const Invoice = require('./invoice');
 
 class Product extends Model {
     static get tableName() {
@@ -59,6 +60,15 @@ class Product extends Model {
             join: {
                 from: 'Product.storeId',
                 to: 'store.id'
+            }
+        },
+
+        invoices: {
+            relation: Model.HasManyRelation,
+            modelClass: Invoice,
+            join: {
+                from: 'products.id',
+                to: 'invoice.productId'
             }
         }
     }

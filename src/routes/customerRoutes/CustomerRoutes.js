@@ -3,6 +3,7 @@ const AddCustomersController = require('../../controllers/CustomerControllers/Cu
 const CustomerLoginController = require('../../controllers/CustomerControllers/Authorization/LoginCustomers');
 const GetAllCustomersController = require('../../controllers/CustomerControllers/Customers/GetAllCustomerController');
 const getAllProductsController = require('../../controllers/CustomerControllers/ProductControllers/getAllProductsController');
+const InvoiceProductsController = require('../../controllers/CustomerControllers/ProductControllers/InvoiceProductController');
 
 //validations
 
@@ -38,6 +39,14 @@ const customerAuthRoutes = () => {
             options:{
                 auth: 'jwt',
                 handler: getAllProductsController
+            }
+        },
+        {
+            method: 'post',
+            path: '/v1/api/invoice/{id}/products',
+            options:{
+                auth: 'jwt',
+                handler: InvoiceProductsController
             }
         }
     ]
