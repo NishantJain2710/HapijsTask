@@ -7,6 +7,11 @@ const UpdateParticularProduct = require('../../../controllers/SuperAdminControll
 
 
 //Validator
+const CreateInvoiceValidation = require('../../../validators/CustomerValidations/CreateInvoiceValidations');
+const CreateProductsBySuperAdminValidation = require('../../../validators/ProductsValidations/CreateProductsBySuperAdmin');
+const AssignProductToStore = require('../../../validators/ProductsValidations/AssignProductToStore');
+const UpdateProductsValidation = require('../../../validators/ProductsValidations/UpdateProductsValidation');
+
 
 const SuperAdminProductRoutes = () => {
     return [
@@ -15,7 +20,10 @@ const SuperAdminProductRoutes = () => {
             path: '/v1/api/s_a/create/product',
             options:{
                 auth: 'jwt',
-                handler: CreateProductsController
+                handler: CreateProductsController,
+                validate:{
+                    payload: CreateProductsBySuperAdminValidation
+                }
             }
         },
         {
@@ -23,7 +31,10 @@ const SuperAdminProductRoutes = () => {
             path: '/v1/api/s_a/assign/product',
             options:{
                 auth: 'jwt',
-                handler: AssignProductsController
+                handler: AssignProductsController,
+                validate:{
+                    payload: AssignProductToStore
+                }
             }
         },
         {
@@ -31,7 +42,10 @@ const SuperAdminProductRoutes = () => {
             path: '/v1/api/s_a/product/manager/{id}',
             options:{
                 auth: 'jwt',
-                handler: GetAllTheProductOfManager
+                handler: GetAllTheProductOfManager,
+                validate: {
+                    params: CreateInvoiceValidation
+                }
             }
         },
         {
@@ -39,7 +53,10 @@ const SuperAdminProductRoutes = () => {
             path: '/v1/api/s_a/product/{id}',
             options:{
                 auth: 'jwt',
-                handler: GetParticularProduct
+                handler: GetParticularProduct,
+                validate: {
+                    params: CreateInvoiceValidation
+                }
             }
         },
         {
@@ -47,7 +64,11 @@ const SuperAdminProductRoutes = () => {
             path: '/v1/api/s_a/product/{id}',
             options:{
                 auth: 'jwt',
-                handler: UpdateParticularProduct
+                handler: UpdateParticularProduct,
+                validate: {
+                    params: CreateInvoiceValidation,
+                    payload: UpdateProductsValidation
+                }
             }
         },
     ]

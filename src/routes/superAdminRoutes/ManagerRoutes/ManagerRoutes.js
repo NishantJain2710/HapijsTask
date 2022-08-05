@@ -7,6 +7,8 @@ const GetStoreDetailsOfManager = require('../../../controllers/SuperAdminControl
 
 //Validator
 const ManagerValidations = require('../../../validators/ManagerValidations/ManagerValidations');
+const CreateInvoiceValidation = require('../../../validators/CustomerValidations/CreateInvoiceValidations');
+
 
 const SuperAdminManagerRoutes = () => {
     return [
@@ -34,7 +36,10 @@ const SuperAdminManagerRoutes = () => {
             path: '/v1/api/s_a/{id}/manager',
             options:{
                 auth: 'jwt',
-                handler: GetParticularManagers
+                handler: GetParticularManagers,
+                validate: {
+                    params: CreateInvoiceValidation
+                }
             }
         },
         {
@@ -42,7 +47,10 @@ const SuperAdminManagerRoutes = () => {
             path: '/v1/api/s_a/store/{id}/manager',
             options:{
                 auth: 'jwt',
-                handler: GetStoreDetailsOfManager
+                handler: GetStoreDetailsOfManager,
+                validate: {
+                    params: CreateInvoiceValidation
+                }
             }
         },
     ]

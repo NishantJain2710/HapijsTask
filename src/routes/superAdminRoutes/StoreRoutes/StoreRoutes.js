@@ -5,6 +5,9 @@ const getAllStoresController = require('../../../controllers/SuperAdminControlle
 const getParticularStoreController = require('../../../controllers/SuperAdminControllers/StoreControllers/getParticularStoreController');
 
 //Validator
+const CreateInvoiceValidation = require('../../../validators/CustomerValidations/CreateInvoiceValidations');
+const CreateStoreValidation = require('../../../validators/storeValidations/createStoreValidation');
+const assignStoreValidation = require('../../../validators/storeValidations/assignStoreValidation');
 
 
 const SuperAdminStoreRoutes = () => {
@@ -14,7 +17,10 @@ const SuperAdminStoreRoutes = () => {
             path: '/v1/api/s_a/create/store',
             options:{
                 auth: 'jwt',
-                handler: PostCreateStore
+                handler: PostCreateStore,
+                validate: {
+                    payload: CreateStoreValidation
+                }
             }
         },
         {
@@ -22,7 +28,10 @@ const SuperAdminStoreRoutes = () => {
             path: '/v1/api/s_a/assign/store',
             options:{
                 auth: 'jwt',
-                handler: AssignManagerController
+                handler: AssignManagerController,
+                validate:{
+                    payload:assignStoreValidation
+                }
             }
         },
         {
@@ -38,7 +47,10 @@ const SuperAdminStoreRoutes = () => {
             path: '/v1/api/s_a/store/{id}',
             options:{
                 auth: 'jwt',
-                handler: getParticularStoreController
+                handler: getParticularStoreController,
+                validate: {
+                    params: CreateInvoiceValidation
+                }
             }
         },
     ]
