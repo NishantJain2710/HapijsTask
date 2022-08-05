@@ -38,8 +38,10 @@ const customerAuthRoutes = () => {
             method: 'get',
             path: '/v1/api/customer',
             options:{
-                auth: 'jwt',
-                handler: GetAllCustomersController
+                auth: {
+                    strategy:'jwt',
+                },
+                handler: GetAllCustomersController,
             }
         },
         {

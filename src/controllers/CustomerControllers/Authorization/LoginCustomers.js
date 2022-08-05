@@ -49,7 +49,7 @@ const CustomerLoginController = async (request, h) => {
 
         const payload = {
             id:     isCustomerExist[0].id,
-            isCustomer:   true
+            userType:'customer'
         }
 
         const token = await jwt.sign(

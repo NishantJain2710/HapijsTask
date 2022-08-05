@@ -6,7 +6,6 @@ const { validate } = require('./utils/auth.js');
 //Routes
 const adminAuthRoutes = require('./routes/adminAuthRoutes/adminAuthRoutes');
 const SuperAdminManagerRoutes = require('./routes/superAdminRoutes/ManagerRoutes/ManagerRoutes');
-const ManagerAuthRoutes = require('./routes/ManagerRoutes/AuthorizationRoutes');
 const SuperAdminStoreRoutes = require('./routes/superAdminRoutes/StoreRoutes/StoreRoutes');
 const SuperAdminProductRoutes = require('./routes/superAdminRoutes/ProductRoutes/ProductsRoutes');
 
@@ -42,7 +41,6 @@ const init = async() => {
 
         server.route(adminAuthRoutes())
         server.route(SuperAdminManagerRoutes())
-        server.route(ManagerAuthRoutes())
         server.route(SuperAdminStoreRoutes())
         server.route(SuperAdminProductRoutes())
         server.route(ManagerProductRoutes())

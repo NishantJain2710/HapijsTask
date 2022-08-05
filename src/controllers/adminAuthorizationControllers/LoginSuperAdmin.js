@@ -14,7 +14,6 @@ const LoginSuperAdmin = async (request, h) => {
         const isAdminExist = await Admin.query()
             .select('fullname', 'email', 'id', 'password', 'isSuperAdmin')
             .where('email', '=', email)
-            .where('isSuperAdmin', '=' , true)
 
         //Throw Error If super admin not found
         if(!isAdminExist.length){
@@ -48,11 +47,19 @@ const LoginSuperAdmin = async (request, h) => {
                 .code(400)
             return response
         }
-        
-        //initializing payload
-        const payload = {
-            id: isAdminExist[0].id,
-            isSuperAdmin: isAdminExist[0].isSuperAdmin
+        let payload
+        if(isAdminExist[0].isSuperAdmin){
+            //initializing payload
+            payload = {
+                id: isAdminExist[0].id,
+                userType:'super_admin'
+            }
+        }else{
+            //initializing payload
+            payload = {
+                id: isAdminExist[0].id,
+                userType:'manager'
+            }
         }
 
         //encode the payload in JWT Token

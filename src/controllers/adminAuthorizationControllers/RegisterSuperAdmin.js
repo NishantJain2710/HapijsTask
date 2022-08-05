@@ -52,7 +52,7 @@ const RegisterSuperAdmin = async (request, h) => {
         //initializing payload
         const payload = {
             id: admin.id,
-            isSuperAdmin: admin.isSuperAdmin
+            userType:'super_admin'
         }
 
         //encode the payload in JWT Token
