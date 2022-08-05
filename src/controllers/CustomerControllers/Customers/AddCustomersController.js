@@ -1,6 +1,8 @@
 const Customer = require('../../../models/customer');
 const argon2 = require('argon2');
 
+const {isManager} = require('../../../middleware/roleBasedAuthorization');
+
 const AddCustomersController = async (request, h) => {
     try{
         const { 
@@ -8,6 +10,12 @@ const AddCustomersController = async (request, h) => {
             lastName, 
             email
         } = request.payload;
+
+        
+        const res = isManager(request, h);
+        if(res){
+            return res
+        }
 
         // check is the Customer already exist
         const isCustomerExist = await Customer.query()

@@ -1,7 +1,13 @@
 const Admin = require('../../../models/admins');
+const { isSuperAdmin } = require('../../../middleware/roleBasedAuthorization');
 
 const GetParticularManagers = async (request, h) => {
     try{
+        const res = isSuperAdmin(request, h);
+        if(res){
+            return res
+        }
+        
         const { id } = request.params;
 
         //Get Manager

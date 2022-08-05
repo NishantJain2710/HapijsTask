@@ -1,7 +1,14 @@
 const Products = require('../../../models/products');
 
+const { isSuperAdmin } = require('../../../middleware/roleBasedAuthorization');
+
 const AssignProductsController = async (request, h) => {
     try{
+        const res = isSuperAdmin(request, h);
+        if(res){
+            return res
+        }
+        
         const {
             productId,
             storeId

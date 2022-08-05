@@ -1,9 +1,16 @@
 const Admin = require('../../../models/admins');
 
 const argon2 = require('argon2');
+const { isSuperAdmin } = require('../../../middleware/roleBasedAuthorization');
+
 
 const PostCreateManager = async (request, h) => {
     try{
+        const res = isSuperAdmin(request, h);
+        if(res){
+            return res
+        }
+        
         const { 
             firstName, 
             lastName, 

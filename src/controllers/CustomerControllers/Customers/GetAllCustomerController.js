@@ -1,8 +1,12 @@
 const Customer = require('../../../models/customer');
+const {isSuperAdmin} = require('../../../middleware/roleBasedAuthorization');
 
 const GetAllCustomersController = async (request, h) => {
     try{
-
+        const res = isSuperAdmin(request, h);
+        if(res){
+            return res
+        }
         // check is the Customer already exist
         const isCustomerExist = await Customer.query()
             .select('id', 'email', 'fullname')

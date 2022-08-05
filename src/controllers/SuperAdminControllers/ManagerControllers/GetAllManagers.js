@@ -1,7 +1,13 @@
 const Admin = require('../../../models/admins');
+const { isSuperAdmin } = require('../../../middleware/roleBasedAuthorization');
 
 const GetAllManagers = async (request, h) => {
     try{
+        const res = isSuperAdmin(request, h);
+        if(res){
+            return res
+        }
+
         //Get List Of Managers
         const getListOfManagers = await Admin.query()
             .select('fullname', 'id', 'email')

@@ -1,9 +1,13 @@
 const Products = require('../../../models/products');
 const Store = require('../../../models/store');
+const {isManager} = require('../../../middleware/roleBasedAuthorization');
 
 const GetAllProductsController = async (request, h) => {
     try{
-        
+        const res = isManager(request, h);
+        if(res){
+            return res
+        }
         //Check if manager has a store
         const isStoreExist = await Store.query()
             .select('id', 'name')

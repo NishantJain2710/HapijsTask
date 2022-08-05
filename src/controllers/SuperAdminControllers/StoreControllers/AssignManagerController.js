@@ -1,8 +1,15 @@
 const Admin = require('../../../models/admins');
 const Store = require('../../../models/store');
 
+const { isSuperAdmin } = require('../../../middleware/roleBasedAuthorization');
+
 const AssignManagerController = async (request, h) => {
     try{    
+        const res = isSuperAdmin(request, h);
+        if(res){
+            return res
+        }
+        
         const {
             managerId,
             storeId

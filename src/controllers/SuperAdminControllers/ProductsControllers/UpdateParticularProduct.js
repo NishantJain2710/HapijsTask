@@ -1,7 +1,13 @@
 const Product = require('../../../models/products');
+const { isSuperAdmin } = require('../../../middleware/roleBasedAuthorization');
 
 const UpdateParticularProduct = async (request, h) => {
     try{    
+        const res = isSuperAdmin(request, h);
+        if(res){
+            return res
+        }
+        
         const { id } = request.params; //product Id
         const {
             name, 

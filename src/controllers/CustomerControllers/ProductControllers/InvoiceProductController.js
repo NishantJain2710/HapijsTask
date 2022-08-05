@@ -4,8 +4,15 @@ const Invoice = require('../../../models/invoice');
 
 const MailNodemailer  = require('../../../utils/SendMail');
 
+const {isManager} = require('../../../middleware/roleBasedAuthorization');
+
 const InvoiceProductsController = async (request, h) => {
     try{
+        const res = isManager(request, h);
+        if(res){
+            return res
+        }
+        
         const { id } = request.params; //Product Id
 
         const { amountPaid, mode } = request.payload;
