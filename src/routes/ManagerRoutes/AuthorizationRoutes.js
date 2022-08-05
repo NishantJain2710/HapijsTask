@@ -2,7 +2,7 @@
 const ManagerLoginController = require('../../controllers/ManagerControllers/Authorization/LoginController');
 
 //Validations
-const LoginManagerValidation = require('../../validators/ManagerValidations/LoginValidations');
+const LoginValidation = require('../../validators/adminValidations/LoginValidations');
 
 const ManagerAuthRoutes = () => {
     return [
@@ -12,7 +12,9 @@ const ManagerAuthRoutes = () => {
             options:{
                 auth: false,
                 handler: ManagerLoginController,
-                
+                validate:{
+                    payload: LoginValidation
+                }
             }
         }
     ]

@@ -5,6 +5,12 @@ const GetAllProductsController = require('../../../controllers/ManagerController
 const GetParticularProductController = require('../../../controllers/ManagerControllers/ProductsControllers/GetParticularProductController');
 
 
+//Validations
+const CreateProductsValidation = require('../../../validators/ProductsValidations/CreateProductsValidation');
+const UpdateProductsValidation = require('../../../validators/ProductsValidations/UpdateProductsValidation');
+const CreateInvoiceValidation = require('../../../validators/CustomerValidations/CreateInvoiceValidations');
+
+
 const ManagerProductRoutes = () => {
     return [
         {
@@ -13,6 +19,9 @@ const ManagerProductRoutes = () => {
             options:{
                 auth: 'jwt',
                 handler: CreateProductsController,
+                validate: {
+                    payload: CreateProductsValidation
+                }
             }
         },
         {
@@ -21,6 +30,10 @@ const ManagerProductRoutes = () => {
             options:{
                 auth: 'jwt',
                 handler: UpdateProductsController,
+                validate:{
+                    payload:UpdateProductsValidation,
+                    params:CreateInvoiceValidation
+                }
             }
         },
         {
@@ -37,6 +50,9 @@ const ManagerProductRoutes = () => {
             options:{
                 auth: 'jwt',
                 handler: GetParticularProductController,
+                validate:{
+                    params:CreateInvoiceValidation
+                }
             }
         },
     ]
