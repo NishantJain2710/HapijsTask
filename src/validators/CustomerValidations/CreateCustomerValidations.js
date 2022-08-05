@@ -1,6 +1,8 @@
 const Joi = require('joi');
 
-const LoginValidation = Joi.object({
+const CreateCustomerValidation = Joi.object({
+    firstName:Joi.string().required(),
+    lastName:Joi.string().required(),
     email: Joi.string().email({
         minDomainSegments: 2,
         tlds:{
@@ -11,7 +13,6 @@ const LoginValidation = Joi.object({
             ]
         }
     }).required(),
-    password: Joi.string().required()
 })
 
-module.exports = LoginValidation;
+module.exports = CreateCustomerValidation;

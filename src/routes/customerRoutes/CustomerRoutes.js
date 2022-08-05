@@ -6,6 +6,9 @@ const getAllProductsController = require('../../controllers/CustomerControllers/
 const InvoiceProductsController = require('../../controllers/CustomerControllers/ProductControllers/InvoiceProductController');
 
 //validations
+const CreateCustomerValidation = require('../../validators/CustomerValidations/CreateCustomerValidations');
+const LoginValidation = require('../../validators/adminValidations/LoginValidations');
+const CreateInvoiceValidation = require('../../validators/CustomerValidations/CreateInvoiceValidations');
 
 const customerAuthRoutes = () => {
     return [
@@ -14,7 +17,10 @@ const customerAuthRoutes = () => {
             path: '/v1/api/create/customer',
             options:{
                 auth: 'jwt',
-                handler: AddCustomersController
+                handler: AddCustomersController,
+                validate:{
+                    payload:CreateCustomerValidation
+                }
             }
         },
         {
@@ -22,7 +28,10 @@ const customerAuthRoutes = () => {
             path: '/v1/api/login/customer',
             options:{
                 auth: false,
-                handler: CustomerLoginController
+                handler: CustomerLoginController,
+                validate:{
+                    payload: LoginValidation
+                }
             }
         },
         {
@@ -46,7 +55,10 @@ const customerAuthRoutes = () => {
             path: '/v1/api/invoice/{id}/products',
             options:{
                 auth: 'jwt',
-                handler: InvoiceProductsController
+                handler: InvoiceProductsController,
+                validate:{
+                    params:CreateInvoiceValidation
+                }
             }
         }
     ]
